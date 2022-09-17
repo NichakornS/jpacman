@@ -32,7 +32,7 @@ class OccupantTest {
     @Test
     void noStartSquare() {
         // Remove the following placeholder:
-        assertThat(unit).isNotNull();
+        assertThat(unit.hasSquare()).isEqualTo(false);
     }
 
     /**
@@ -42,7 +42,13 @@ class OccupantTest {
     @Test
     void testOccupy() {
         // Remove the following placeholder:
-        assertThat(unit).isNotNull();
+        Square target = new BasicSquare();
+        target.isAccessibleTo(unit);
+        unit.occupy(target);
+
+        Square wrongTarget = new BasicSquare();
+        assertThat(unit.getSquare()).isEqualTo(target);
+        assertThat(unit.getSquare()).isNotEqualTo(wrongTarget);
     }
 
     /**
@@ -52,6 +58,14 @@ class OccupantTest {
     @Test
     void testReoccupy() {
         // Remove the following placeholder:
-        assertThat(unit).isNotNull();
+        Square a = new BasicSquare();
+        Square b = new BasicSquare();
+
+        unit.occupy(a);
+        unit.occupy(b);
+
+        assertThat(unit.getSquare()).isEqualTo(b);
+        assertThat(unit.getSquare()).isNotEqualTo(a);
+
     }
 }
